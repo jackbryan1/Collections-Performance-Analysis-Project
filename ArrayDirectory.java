@@ -12,8 +12,10 @@ abstract class ArrayDirectory implements Directory {
         FileReader fr = new FileReader("test_data.csv");
         Scanner s = new Scanner(fr).useDelimiter(",");
         while(s.hasNext()){
-
+            Entry next = new Entry(s.next(), s.next(), s.next());
+            insertEntry(next);
         }
+        s.close();
     }
     /**
      * Insert a new entry into the directory.
