@@ -4,16 +4,19 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
-abstract class ArrayDirectory implements Directory {
-    Entry[] entries = new Entry[0];
-    int free = 0;
+public class ArrayDirectory implements Directory {
 
-    public void main(String args[]) throws FileNotFoundException {
+    private Entry[] entries = new Entry[0];
+    private int free = 0;
+
+    public static void main(String args[]) throws FileNotFoundException {
+        ArrayDirectory ad = new ArrayDirectory();
         FileReader fr = new FileReader("test_data.csv");
         Scanner s = new Scanner(fr).useDelimiter(",");
         while(s.hasNext()){
             Entry next = new Entry(s.next(), s.next(), s.next());
-            insertEntry(next);
+            ad.insertEntry(next);
+
         }
         s.close();
     }
@@ -23,7 +26,8 @@ abstract class ArrayDirectory implements Directory {
      * @param entry the new entry to add
      */
     public void insertEntry(Entry entry) {
-        if (free > entries.length) {
+
+        if (free == entries.length) {
             entries = Arrays.copyOf(entries, entries.length + 1);
         }
         entries[free] = entry;
