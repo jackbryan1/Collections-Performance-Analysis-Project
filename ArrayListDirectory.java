@@ -1,29 +1,28 @@
 import java.io.FileNotFoundException;
 import java.io.FileReader;
-import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public class ArrayDirectory implements Directory {
+public class ArrayListDirectory implements Directory{
 
-    private Entry[] entries = new Entry[0];
-    private int free = 0;
+    private ArrayList<Entry> entries = new ArrayList<>();
 
     public static void main(String args[]) throws FileNotFoundException {
-        ArrayDirectory ad = new ArrayDirectory();
+        ArrayListDirectory ald = new ArrayListDirectory();
         FileReader fr = new FileReader("test_data.csv");
         Scanner s = new Scanner(fr).useDelimiter(",");
         while(s.hasNext()){
-            ad.insertEntry(new Entry(s.next(), s.next(), s.nextLine()));
+            ald.insertEntry(new Entry(s.next(), s.next(), s.nextLine()));
         }
         s.close();
-        //System.out.println(ad.lookupExtension("Prott"));
-        //ad.deleteEntryUsingName("Amner");
-        //ad.deleteEntryUsingExtension("49521");
-        //ad.updateExtensionUsingName("Relph", "00000");
-        //for(int k = 0; k < ad.entries.length ; k++){
-        //   System.out.println(ad.entries[k].getSurname() + ad.entries[k].getInitials() + ad.entries[k].getExtension());
-        //}
+        System.out.println(ald.lookupExtension("Prott"));
+        ald.deleteEntryUsingName("Amner");
+        ald.deleteEntryUsingExtension("49521");
+        ald.updateExtensionUsingName("Relph", "00000");
+        for(int k = 0; k < ald.entries.size() ; k++){
+           System.out.println(ald.entries.get(k).getSurname() + ald.entries.get(k).getInitials() + ald.entries.get(k).getExtension());
+        }
     }
     /**
      * Insert a new entry into the directory.
@@ -31,11 +30,7 @@ public class ArrayDirectory implements Directory {
      * @param entry the new entry to add
      */
     public void insertEntry(Entry entry) {
-        if (free == entries.length) {
-            entries = Arrays.copyOf(entries, entries.length + 1);
-        }
-        entries[free] = entry;
-        free++;
+        entries.add(entry);
     }
 
     /**
@@ -46,14 +41,10 @@ public class ArrayDirectory implements Directory {
     public void deleteEntryUsingName(String surname){
         int i = 0;
         boolean found = false;
-        while(!found && i < entries.length){
-            if(entries[i].getSurname().contains(surname)) {
+        while(!found && i < entries.size()){
+            if(entries.get(i).getSurname().contains(surname)) {
                 found = true;
-                for(int j = i; j < entries.length - 1; j++){
-                    entries[j] = entries[j+1];
-                }
-                entries = Arrays.copyOf(entries, entries.length - 1) ;
-                free--;
+                entries.remove(entries.get(i));
             }
             i++;
         }
@@ -67,14 +58,10 @@ public class ArrayDirectory implements Directory {
     public void deleteEntryUsingExtension(String number){
         int i = 0;
         boolean found = false;
-        while(!found && i < entries.length){
-            if(entries[i].getExtension().contains(number)) {
+        while(!found && i < entries.size()){
+            if(entries.get(i).getExtension().contains(number)) {
                 found = true;
-                for(int j = i; j < entries.length - 1; j++){
-                    entries[j] = entries[j+1];
-                }
-                entries = Arrays.copyOf(entries, entries.length - 1) ;
-                free--;
+                entries.remove(entries.get(i));
             }
             i++;
         }
@@ -89,10 +76,10 @@ public class ArrayDirectory implements Directory {
     public void updateExtensionUsingName(String surname, String newNumber){
         int i = 0;
         boolean found = false;
-        while(!found && i < entries.length){
-            if(entries[i].getSurname().equals(surname)) {
+        while(!found && i < entries.size()){
+            if(entries.get(i).getSurname().equals(surname)) {
                 found = true;
-                entries[i].setExtension(newNumber);
+                entries.get(i).setExtension(newNumber);
             }
             i++;
         }
@@ -106,9 +93,9 @@ public class ArrayDirectory implements Directory {
      */
     public String lookupExtension(String surname){
         int i = 0;
-        while(i < entries.length){
-            if(entries[i].getSurname().contains(surname)) {
-                return entries[i].getExtension();
+        while(i < entries.size()){
+            if(entries.get(i).getSurname().contains(surname)) {
+                return entries.get(i).getExtension();
             }
             i++;
         }
@@ -120,7 +107,7 @@ public class ArrayDirectory implements Directory {
      *
      * @return an array list of all entries
      */
-    public List<Entry> toArrayList(){
-        return Arrays.asList(entries);
+    public List<Entry> toArrayList() {
+        return entries;
     }
 }

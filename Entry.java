@@ -1,7 +1,7 @@
 public class Entry {
-    String Surname;
-    String Initials;
-    String Extension;
+    private String Surname;
+    private String Initials;
+    private String Extension;
 
     public Entry(String Surname, String Initials, String Extension){
         this.Surname = Surname;
@@ -10,26 +10,26 @@ public class Entry {
     }
 
     public String getSurname() {
-        return Surname;
+        return this.Surname;
     }
 
     public void setSurname(String surname) {
-        Surname = surname;
+        this.Surname = surname;
     }
 
     public String getInitials() {
-        return Initials;
+        return this.Initials;
     }
 
     public void setInitials(String initials) {
-        Initials = initials;
+        this.Initials = initials;
     }
 
     public String getExtension() {
-        return Extension;
+        return this.Extension;
     }
 
     public void setExtension(String extension) {
-        Extension = extension;
+        this.Extension = extension;
     }
 }
