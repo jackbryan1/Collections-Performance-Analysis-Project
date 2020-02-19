@@ -9,7 +9,7 @@ public class ArrayDirectory implements Directory {
     private Entry[] entries = new Entry[0];
     private int free = 0;
 
-    public static void main(String args[]) throws FileNotFoundException {
+    public static void main(String[] args) throws FileNotFoundException {
         ArrayDirectory ad = new ArrayDirectory();
         FileReader fr = new FileReader("test_data.csv");
         Scanner s = new Scanner(fr).useDelimiter(",");
