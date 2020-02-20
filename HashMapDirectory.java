@@ -15,13 +15,13 @@ public class HashMapDirectory implements Directory{
             hmd.insertEntry(new Entry(s.next(), s.next(), s.nextLine()));
         }
         s.close();
-        System.out.println(hmd.lookupExtension("Prott"));
-        hmd.deleteEntryUsingName("Amner");
-        hmd.deleteEntryUsingExtension("49521");
-        hmd.updateExtensionUsingName("Relph", "00000");
-        for(String k : hmd.entriesNum.keySet()){
-            System.out.println(hmd.entriesNum.get(k).getSurname() + hmd.entriesNum.get(k).getInitials() + hmd.entriesNum.get(k).getExtension());
-        }
+        //System.out.println(hmd.lookupExtension("Prott"));
+        //hmd.deleteEntryUsingName("Amner");
+        //hmd.deleteEntryUsingExtension("49521");
+        //hmd.updateExtensionUsingName("Relph", "00000");
+        //for(String k : hmd.entriesNum.keySet()){
+        //    System.out.println(hmd.entriesNum.get(k).getSurname() + hmd.entriesNum.get(k).getInitials() + hmd.entriesNum.get(k).getExtension());
+        //}
     }
     /**
      * Insert a new entry into the directory.
