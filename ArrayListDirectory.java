@@ -18,13 +18,13 @@ public class ArrayListDirectory implements Directory{
             ald.insertEntry(new Entry(temp[0], temp[1], temp[2]));
         }
         s.close();
-        //System.out.println(ald.lookupExtension("Prott"));
-        //ald.deleteEntryUsingName("Amner");
-        //ald.deleteEntryUsingExtension("49521");
-        //ald.updateExtensionUsingName("Relph", "00000");
-        //for(int k = 0; k < ald.entries.size() ; k++){
-        //   System.out.println(ald.entries.get(k).getSurname() + ald.entries.get(k).getInitials() + ald.entries.get(k).getExtension());
-        //}
+        System.out.println(ald.lookupExtension("Prott"));
+        ald.deleteEntryUsingName("Amner");
+        ald.deleteEntryUsingExtension("49521");
+        ald.updateExtensionUsingName("Relph", "00000");
+        for(int k = 0; k < ald.entries.size() ; k++){
+           System.out.println(ald.entries.get(k).getSurname() + ald.entries.get(k).getInitials() + ald.entries.get(k).getExtension());
+        }
     }
     /**
      * Insert a new entry into the directory.

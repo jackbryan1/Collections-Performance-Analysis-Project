@@ -19,13 +19,13 @@ public class ArrayDirectory implements Directory {
             ad.insertEntry(new Entry(temp[0], temp[1], temp[2]));
         }
         s.close();
-        //System.out.println(ad.lookupExtension("Prott"));
-        //ad.deleteEntryUsingName("Amner");
-        //ad.deleteEntryUsingExtension("49521");
-        //ad.updateExtensionUsingName("Relph", "00000");
-        //for(int k = 0; k < ad.entries.length ; k++){
-        //   System.out.println(ad.entries[k].getSurname() + ad.entries[k].getInitials() + ad.entries[k].getExtension());
-        //}
+        System.out.println(ad.lookupExtension("Prott"));
+        ad.deleteEntryUsingName("Amner");
+        ad.deleteEntryUsingExtension("49521");
+        ad.updateExtensionUsingName("Relph", "00000");
+        for(int k = 0; k < ad.entries.length ; k++){
+           System.out.println(ad.entries[k].getSurname() + ad.entries[k].getInitials() + ad.entries[k].getExtension());
+        }
     }
     /**
      * Insert a new entry into the directory.
