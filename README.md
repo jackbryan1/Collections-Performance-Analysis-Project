@@ -1,0 +1,1 @@
+To run each part run the class with the same name
