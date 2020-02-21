@@ -1,10 +1,13 @@
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.IOException;
 import java.util.Scanner;
-import java.util.HashMap;
 
 public class PerformanceAnalysis{
-    public static void main(String[] Args) throws FileNotFoundException {
+    public static void main(String[] Args)throws IOException{
+        run(false);
+    }
+    public static void run(Boolean r) throws IOException{
         long total = 0;
         long[] average = new long[12];
         long[] slowest = new long[12];
@@ -169,6 +172,7 @@ public class PerformanceAnalysis{
         average[7] = total/1000;
         total = 0;
         for(int i = 0; i < 1000; i++) {
+            hmd=hmdReset(hmd);
             sw.start();
             hmd.insertEntry(new Entry("test", "test", "11111"));
             sw.stop();
@@ -179,13 +183,12 @@ public class PerformanceAnalysis{
             if(sw.getElapsedTime() < quickest[8]){
                 quickest[8] = sw.getElapsedTime();
             }
-            hmd = backuphmd;
             sw.reset();
         }
         average[8] = total/1000;
         total = 0;
         for(int i = 0; i < 1000; i++) {
-            hmd = hmdreset(hmd);
+            hmd = hmdReset(hmd);
             sw.start();
             hmd.deleteEntryUsingExtension("35024");
             sw.stop();
@@ -201,7 +204,7 @@ public class PerformanceAnalysis{
         average[9] = total/1000;
         total = 0;
         for(int i = 0; i < 1000; i++) {
-            hmd = hmdreset(hmd);
+            hmd = hmdReset(hmd);
             sw.start();
             hmd.deleteEntryUsingName("Rotlauf");
             sw.stop();
@@ -217,7 +220,7 @@ public class PerformanceAnalysis{
         average[10] = total/1000;
         total = 0;
         for(int i = 0; i < 1000; i++) {
-            hmd = hmdreset(hmd);
+            hmd = hmdReset(hmd);
             sw.start();
             hmd.lookupExtension("Rotlauf");
             sw.stop();
@@ -261,9 +264,12 @@ public class PerformanceAnalysis{
 //            System.out.println("Fastest: " + quickest[i]);
 //            System.out.println();
 //        }
-
+        output o = new output();
+        if(r = true){
+            o.performanceTxt(slowest,average,quickest);
+        }
     }
-    public static HashMapDirectory hmdreset(HashMapDirectory hmd) throws FileNotFoundException{
+    public static HashMapDirectory hmdReset(HashMapDirectory hmd) throws FileNotFoundException{
         FileReader fr = new FileReader("test_data.csv");
         Scanner s = new Scanner(fr).useDelimiter(",");
         while(s.hasNext()){

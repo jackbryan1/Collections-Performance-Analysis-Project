@@ -73,7 +73,6 @@ public class HashMapDirectory implements Directory{
      * @return the extension number of the entry
      */
     public String lookupExtension(String surname){
-        System.out.println(entriesStr.get(surname));
         return entriesStr.get(surname).getExtension();
     }
 

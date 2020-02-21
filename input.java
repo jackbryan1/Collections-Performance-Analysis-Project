@@ -4,7 +4,6 @@ import java.util.Scanner;
 
 public class input {
     public static void main(String[] args) throws FileNotFoundException {
-        String[] arguments = {};
         Scanner s = new Scanner(System.in);
         System.out.println("Enter file name");
         String fn = s.nextLine();
