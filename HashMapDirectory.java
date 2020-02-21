@@ -4,19 +4,21 @@ import java.util.*;
 
 public class HashMapDirectory implements Directory{
 
-    private HashMap<String, Entry> entriesNum = new HashMap<>();
-    private HashMap<String, Entry> entriesStr = new HashMap<>();
+    HashMap<String, Entry> entriesNum = new HashMap<>();
+    HashMap<String, Entry> entriesStr = new HashMap<>();
 
     public static void main(String args[]) throws FileNotFoundException {
         HashMapDirectory hmd = new HashMapDirectory();
         FileReader fr = new FileReader("test_data.csv");
         Scanner s = new Scanner(fr).useDelimiter(",");
         while(s.hasNext()){
-            hmd.insertEntry(new Entry(s.next(), s.next(), s.nextLine()));
+            String[] temp = new String[3];
+            temp = s.nextLine().split(",");
+            hmd.insertEntry(new Entry(temp[0], temp[1], temp[2]));
         }
         s.close();
         //System.out.println(hmd.lookupExtension("Prott"));
-        //hmd.deleteEntryUsingName("Amner");
+        //hmd.deleteEntryUsingName("Rotlauf");
         //hmd.deleteEntryUsingExtension("49521");
         //hmd.updateExtensionUsingName("Relph", "00000");
         //for(String k : hmd.entriesNum.keySet()){
@@ -71,6 +73,7 @@ public class HashMapDirectory implements Directory{
      * @return the extension number of the entry
      */
     public String lookupExtension(String surname){
+        System.out.println(entriesStr.get(surname));
         return entriesStr.get(surname).getExtension();
     }
 
@@ -80,8 +83,8 @@ public class HashMapDirectory implements Directory{
      * @return an array list of all entries
      */
     public List<Entry> toArrayList() {
-        Collection<Entry> temp = entriesNum.values();
-        ArrayList<Entry> arrayList = new ArrayList<>(temp);
+        Collection<Entry> c = entriesNum.values();
+        ArrayList<Entry> arrayList = new ArrayList<>(c);
         return arrayList;
     }
 }

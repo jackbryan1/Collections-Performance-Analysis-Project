@@ -13,7 +13,9 @@ public class ArrayListDirectory implements Directory{
         FileReader fr = new FileReader("test_data.csv");
         Scanner s = new Scanner(fr).useDelimiter(",");
         while(s.hasNext()){
-            ald.insertEntry(new Entry(s.next(), s.next(), s.nextLine()));
+            String[] temp = new String[3];
+            temp = s.nextLine().split(",");
+            ald.insertEntry(new Entry(temp[0], temp[1], temp[2]));
         }
         s.close();
         //System.out.println(ald.lookupExtension("Prott"));
