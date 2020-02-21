@@ -265,7 +265,7 @@ public class PerformanceAnalysis{
 //            System.out.println();
 //        }
         output o = new output();
-        if(r = true){
+        if(r){
             o.performanceTxt(slowest,average,quickest);
         }
     }

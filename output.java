@@ -3,27 +3,17 @@ import java.util.Scanner;
 
 public class output {
     public static void main(String args[]) throws FileNotFoundException, IOException{
-        Scanner s = new Scanner(System.in);
-        System.out.println("What do you want to do? (1: Table, 2: CSV, 3:Performance");
-        String op = s.nextLine();
-        s.close();
-        if (op=="1"){
-            System.out.format("+-------------+--------------+---------------+" + System.lineSeparator());
-            System.out.format("|   Surname   |   Initials   |   Extension   |" + System.lineSeparator());
-            System.out.format("+-------------+--------------+---------------+" + System.lineSeparator());
-            FileReader fr = new FileReader("test_data.csv");
-            Scanner s2 = new Scanner(fr).useDelimiter(",");
-            while(s2.hasNext()){
-                System.out.format("%1s%13s%1s%14s%1s%15s%1s%n", "|", s2.next(), "|", s2.next(), "|", s2.nextLine(), "|");
-            }
-            System.out.format("+-------------+--------------+---------------+");
+        System.out.format("+-------------+--------------+---------------+" + System.lineSeparator());
+        System.out.format("|   Surname   |   Initials   |   Extension   |" + System.lineSeparator());
+        System.out.format("+-------------+--------------+---------------+" + System.lineSeparator());
+        FileReader fr = new FileReader("test_data.csv");
+        Scanner s = new Scanner(fr).useDelimiter(",");
+        while(s.hasNext()){
+            System.out.format("%1s%13s%1s%14s%1s%15s%1s%n", "|", s.next(), "|", s.next(), "|", s.nextLine(), "|");
         }
-        if (op=="2") {
-            makeCsv();
-        }
-        if (op=="3") {
-            PerformanceAnalysis.run(true);
-        }
+        System.out.format("+-------------+--------------+---------------+");
+        makeCsv();
+        PerformanceAnalysis.run(true);
     }
     public static void makeCsv() throws IOException {
         ArrayDirectory ad = new ArrayDirectory();
@@ -40,7 +30,7 @@ public class output {
     }
     public static void performanceTxt(long[] slowest,long[] average,long[] quickest) throws IOException{
         Scanner s = new Scanner(System.in);
-        System.out.println("Enter file name");
+        System.out.println(System.lineSeparator() + "Enter file name");
         String fn = s.nextLine();
         s.close();
         FileWriter fw = new FileWriter(fn);
